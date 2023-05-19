@@ -87,4 +87,5 @@ def translate_text():
     return word_translate(source_text), 200
 
 
-service.run("0.0.0.0", port=8090)
+if __name__ == "__main__":
+    service.run("0.0.0.0", port=8090)
