@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 dictionary = {
     'А': 'A',
@@ -83,7 +83,7 @@ service = Flask("latin-ua-service")
 
 @service.get("/")
 def translate_text():
-    source_text = "Укрзалізниця"
+    source_text = request.data.decode("utf8")
     return word_translate(source_text), 200
 
 
