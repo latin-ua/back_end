@@ -61,9 +61,11 @@ dictionary = {
     'Щ': 'Shch',
     'щ': 'shch',
     'Ю': 'Yu',
-    'ю': 'іu',
+    'ю': 'iu',
     'Я': 'Ya',
     'я': 'ia',
+    'ь': '',
+    "'": '',
 }
 
 
@@ -73,6 +75,8 @@ def word_translate(word):
     for i in word:
         if i in dictionary:
             translated_word.append(dictionary[i])
+        else:
+            translated_word.append(i)
 
     translated_word = "".join(translated_word)
     return translated_word
