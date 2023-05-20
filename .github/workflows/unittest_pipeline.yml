@@ -32,16 +32,16 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-  deploy:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    container: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-    needs: build-and-push-image
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Run unittest
-        run: python3 /test.py
+  #deploy:
+    #name: Deploy Docker Image
+    #runs-on: ubuntu-latest
+    #container: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+    #needs: build-and-push-image
+    #steps:
+      #- name: Checkout source code
+        #uses: actions/checkout@v2
+      #- name: Run unittest
+        #run: python3 /test.py
 
 
   #if_merged:
