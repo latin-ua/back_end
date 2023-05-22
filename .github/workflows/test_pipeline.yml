@@ -1,14 +1,10 @@
 name: test
 on:
   pull_request:
-    types: [ opened, reopened ]
+    types: [ reopened ]
   push:
     branches-ignore:
       - 'master'
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
 
