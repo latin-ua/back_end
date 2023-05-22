@@ -4,8 +4,11 @@ from ua_latin import word_translate
 
 class TestWordTranslate(unittest.TestCase):
     def test_lowercase_one_word(self):
-        source_text = "Жебракують філософи при ґанку церкви в Гадячі, ще й шатро їхнє п'яне знаємо"
-        expected_translation = "Zhebrakuiut filosofy pry ganku tserkvy v Hadiachi, shche i shatro ikhnie piane znaiemo"
+        source_text = ("Жебракують філософи при ґанку церкви в Гадячі, "
+                       "ще й шатро їхнє п'яне знаємо")
+        expected_translation = ("Zhebrakuiut filosofy pry ganku tserkvy v "
+                                "Hadiachi, shche i shatro ikhnie piane "
+                                "znaiemo")
         actual_translation = word_translate(source_text)
 
         self.assertEqual(actual_translation, expected_translation)
