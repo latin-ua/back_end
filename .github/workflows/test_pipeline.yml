@@ -1,0 +1,25 @@
+name: test
+on:
+  pull_request:
+    types: [ opened, reopened ]
+  push:
+    branches-ignore:
+      - 'master'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+
+  tests:
+    name: Run Python Tests
+    runs-on: ubuntu-latest
+    container: docker.io/python:3.10-alpine
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Run unit tests
+        run: python3 ./test.py
