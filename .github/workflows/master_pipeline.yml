@@ -1,12 +1,13 @@
 name: Master pipeline
 on:
   push:
-    branches:
-      - 'master'
+  pull_request:
+    types: [ reopened ]
 
 env:
   REGISTRY: ghcr.io
   DOCKER_IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+  IMAGE_VERSION: ${{ github.sha }}
 
 jobs:
   tests:
@@ -35,6 +36,7 @@ jobs:
 
   build-and-push-image:
     name: Build and push image
+    if: ${{ github.ref_name == 'master' }}
     needs:
       - tests
       - code_style
@@ -61,3 +63,33 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_IMAGE }}
 
+  helmfile-diff:
+    name: Show k8s diff
+    runs-on: ubuntu-latest
+    container: ghcr.io/latin-ua/docker_images/terraform_pipeline:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run helmfile diff
+        run: |
+          source assume-role.sh
+          helmfile diff
+
+  helmfile-apply:
+    name: Apply changes to k8s
+    if: ${{ github.ref_name == 'master' }}
+    needs:
+      - tests
+      - code_style
+      - build-and-push-image
+      - helmfile-diff
+    runs-on: ubuntu-latest
+    container: ghcr.io/latin-ua/docker_images/terraform_pipeline:latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run helmfile apply
+        run: |
+          source assume-role.sh
+          helmfile apply
