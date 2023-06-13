@@ -3,5 +3,5 @@ releases:
     chart: ./chart
     namespace: default
     set:
-      imageVersion: {{ requiredEnv IMAGE_VERSION }}
-
+      - name: imageVersion
+        value: {{ requiredEnv "IMAGE_VERSION" }}
