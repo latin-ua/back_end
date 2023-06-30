@@ -91,6 +91,7 @@ CORS(service)
 @cross_origin()
 def translate_text():
     source_text = request.data.decode("utf8")
+    print(f"Received request: {source_text}")
     return word_translate(source_text), 200
 
 
