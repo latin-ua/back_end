@@ -7,9 +7,11 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/healthcheck-path: /health-check
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    external-dns.alpha.kubernetes.io/hostname: latin.com.ua
 spec:
   rules:
-    - http:
+    - host: latin.com.ua
+      http:
         paths:
           - path: /
             pathType: Prefix
