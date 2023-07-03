@@ -1,4 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
+
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 dictionary = {
     'А': 'A',
@@ -83,11 +90,14 @@ def word_translate(word):
 
 
 service = Flask("latin-ua-service")
+CORS(service)
 
 
 @service.get("/")
+@cross_origin()
 def translate_text():
     source_text = request.data.decode("utf8")
+    logger.error(f"Received request: {source_text}")
     return word_translate(source_text), 200
 
 
