@@ -93,7 +93,7 @@ service = Flask("latin-ua-service")
 CORS(service)
 
 
-@service.get("/")
+@service.post("/")
 @cross_origin()
 def translate_text():
     source_text = request.data.decode("utf8")
