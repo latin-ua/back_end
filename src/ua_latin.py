@@ -88,6 +88,7 @@ dictionary_first_letter = {
     'я': 'ya',
 }
 
+
 def text_translate(text):
     word_list = text.split()
     translated_text = []
