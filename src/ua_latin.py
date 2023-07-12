@@ -75,15 +75,40 @@ dictionary = {
     "'": '',
 }
 
+dictionary_first_letter = {
+    'Є': 'Ye',
+    'є': 'ye',
+    'Ї': 'Yi',
+    'ї': 'yi',
+    'Й': 'Y',
+    'й': 'y',
+    'Ю': 'Yu',
+    'ю': 'yu',
+    'Я': 'Ya',
+    'я': 'ya',
+}
+
+
+def text_translate(text):
+    word_list = text.split()
+    translated_text = []
+    for word in word_list:
+        translated_word = word_translate(word)
+        translated_text.append(translated_word)
+    translated_text = " ".join(translated_text)
+    return translated_text
+
 
 def word_translate(word):
     translated_word = []
 
-    for i in word:
-        if i in dictionary:
-            translated_word.append(dictionary[i])
+    for index, letter in enumerate(word):
+        if index == 0 and letter in dictionary_first_letter:
+            translated_word.append(dictionary_first_letter[letter])
+        elif letter in dictionary:
+            translated_word.append(dictionary[letter])
         else:
-            translated_word.append(i)
+            translated_word.append(letter)
 
     translated_word = "".join(translated_word)
     return translated_word
@@ -95,14 +120,14 @@ CORS(service)
 
 @service.post("/")
 @cross_origin()
-def translate_text():
+def translate_text_endpoint():
     source_text = request.data.decode("utf8")
     logger.error(f"Received request: {source_text}")
-    return word_translate(source_text), 200
+    return text_translate(source_text), 200
 
 
 @service.get('/health-check')
-def health_check():
+def health_check_endpoint():
     return "healthy", 200
 
 
