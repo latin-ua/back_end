@@ -69,6 +69,13 @@ class TestWordTranslate(unittest.TestCase):
 
         self.assertEqual(actual_translation, expected_translation)
 
+    def test_word_with_zgh_symbol(self):
+        source_text = "Згорани Розгон"
+        expected_translation = "Zghorany Rozghon"
+        actual_translation = text_translate(source_text)
+
+        self.assertEqual(actual_translation, expected_translation)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
