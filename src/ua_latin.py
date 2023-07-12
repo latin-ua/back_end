@@ -89,18 +89,32 @@ dictionary_first_letter = {
 }
 
 
+diphthong = [
+    ("зг", "zgh"),
+    ("Зг", "Zgh"),
+    ("зГ", "zGH"),
+    ("ЗГ", "ZGH")
+]
+
+
 def text_translate(text):
     word_list = text.split()
     translated_text = []
+
     for word in word_list:
         translated_word = word_translate(word)
         translated_text.append(translated_word)
+
     translated_text = " ".join(translated_text)
     return translated_text
 
 
 def word_translate(word):
+
     translated_word = []
+
+    for cyrillic, latin in diphthong:
+        word = word.replace(cyrillic, latin)
 
     for index, letter in enumerate(word):
         if index == 0 and letter in dictionary_first_letter:
