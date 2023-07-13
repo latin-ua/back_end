@@ -2,6 +2,11 @@ repositories:
   - name: common
     url: git+https://github.com/latin-ua/common_chart/@chart
 
+environments:
+  production:
+    secrets:
+      - secrets.yaml
+
 releases:
   - name: latin-ua-back-end
     chart: common/common-chart
