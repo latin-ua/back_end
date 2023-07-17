@@ -269,7 +269,6 @@ dictionary_with_letter_j = {
     ' Ь ': ' Ĵ ',
 }
 
-
 # diphthong = [
 #     ("зг", "zgh"),
 #     ("Зг", "Zgh"),
