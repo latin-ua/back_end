@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 import logging
-from ua_latin_standard_transliteration import text_translate
+# from ua_latin_standard_transliteration import text_translate
 from ua_latin_system_a import text_translate_system_a
 
 logger = logging.getLogger(__name__)
