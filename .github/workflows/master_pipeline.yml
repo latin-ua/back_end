@@ -21,9 +21,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Install requirements
         run: pip install -r requirements.txt
-      - name: Run unit tests
+      - name: Run unit tests for KMU
+        run: python3 ./src/test_kmu.py
+      - name: Run unit tests for DSTU
         run: python3 ./src/test_dstu_a.py
-        # run: python3 ./src/test_kmu.py
 
   code_style:
     name: Run Code Style Tests
