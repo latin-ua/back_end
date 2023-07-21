@@ -22,7 +22,8 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
       - name: Run unit tests
-        run: python3 ./src/test_system_a.py
+        run: python3 ./src/test_dstu_a.py
+        # run: python3 ./src/test_kmu.py
 
   code_style:
     name: Run Code Style Tests

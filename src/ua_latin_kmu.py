@@ -89,7 +89,7 @@ diphthong = [
 ]
 
 
-def text_translate(text):
+def text_translate_kmu(text):
     word_list = text.split()
     translated_text = []
 
