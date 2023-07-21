@@ -307,4 +307,3 @@ def word_translate(word):
 
     translated_word = "".join(translated_word)
     return translated_word
-
