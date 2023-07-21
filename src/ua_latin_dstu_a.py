@@ -280,7 +280,7 @@ list_with_letter_j = [
 ]
 
 
-def text_translate_system_a(text):
+def text_translate_dstu_a(text):
     word_list = text.split()
     translated_text = []
 
@@ -307,6 +307,3 @@ def word_translate(word):
 
     translated_word = "".join(translated_word)
     return translated_word
-
-
-# print(text_translate_system_a("країна У"))
