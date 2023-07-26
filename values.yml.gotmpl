@@ -2,5 +2,5 @@ image: {{ requiredEnv "DOCKER_IMAGE" }}
 serviceName: latin-ua-back-end
 containerPort: 8090
 servicePort: 80
-externalDnsName: latin.com.ua
+externalDnsName: api.latin.com.ua
 newRelicLicenseKey: {{ .Values.newRelicLicenseKey | quote }}
