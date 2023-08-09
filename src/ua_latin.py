@@ -8,9 +8,19 @@ from ua_latin_dstu_a import text_translate_dstu_a
 
 logger = logging.getLogger(__name__)
 
-
 service = Flask("latin-ua-service")
 CORS(service)
+
+ALL_TRANSLATION_METHODS = [
+    {
+        "code": "DSTU_A",
+        "title": "ДСТУ 9112:2021: Cистема А"
+    },
+    {
+        "code": "KMU",
+        "title": "Постанова КМУ № 55 від 27 січня 2010 р."
+    },
+]
 
 
 @service.post("/")
@@ -26,8 +36,11 @@ def translate_text_endpoint():
         return text_translate_kmu(source_text), 200
     elif translation_method == "DSTU_A":
         return text_translate_dstu_a(source_text), 200
-    else:
-        return "Translation method must be one of: 'KMU', 'DSTU_A'", 400
+
+
+@service.get("/translation-methods")
+def get_translation_methods():
+    return ALL_TRANSLATION_METHODS, 200
 
 
 @service.get('/health-check')
