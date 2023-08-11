@@ -23,7 +23,7 @@ ALL_TRANSLATION_METHODS = [
 ]
 
 
-@service.post("/")
+@service.post("/api/translate")
 @cross_origin()
 def translate_text_endpoint():
     source_data = request.json
@@ -38,7 +38,7 @@ def translate_text_endpoint():
         return text_translate_dstu_a(source_text), 200
 
 
-@service.get("/translation-methods")
+@service.get("/api/translation-methods")
 def get_translation_methods():
     return ALL_TRANSLATION_METHODS, 200
 
